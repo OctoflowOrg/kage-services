@@ -1,0 +1,54 @@
+---
+import { siteContent } from '../data/site';
+import '../styles/global.css';
+
+type Props = {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+  ogImage?: string;
+};
+
+const {
+  title = siteContent.seo.title,
+  description = siteContent.seo.description,
+  canonicalPath = '/',
+  ogImage = siteContent.seo.ogImage,
+} = Astro.props;
+
+const siteBase = Astro.site ?? (siteContent.seo.siteUrl ? new URL(siteContent.seo.siteUrl) : undefined);
+const canonicalUrl = siteBase ? new URL(canonicalPath, siteBase).toString() : undefined;
+const ogImageUrl =
+  ogImage.startsWith('http') || !siteBase ? ogImage : new URL(ogImage, siteBase).toString();
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#286c00" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=La+Belle+Aurore&family=Manrope:wght@400;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Work+Sans:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

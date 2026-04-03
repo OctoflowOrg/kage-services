@@ -1,0 +1,87 @@
+---
+import { siteContent } from '../data/site';
+
+const navItems = siteContent.navigation;
+---
+
+<header class="site-header">
+  <nav class="site-header__nav" aria-label="Primary navigation">
+    <div class="site-header__inner container">
+      <a class="site-header__brand" href="#home" aria-label={`${siteContent.company.name} home`}>
+        <img
+          class="site-header__logo"
+          src={siteContent.company.logo.src}
+          alt={siteContent.company.logo.alt}
+          loading="eager"
+          decoding="async"
+        />
+      </a>
+
+      <button
+        class="site-header__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="mobile-navigation"
+        data-menu-toggle
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
+        <span class="sr-only">Toggle navigation</span>
+      </button>
+
+      <div class="site-header__desktop">
+        {
+          navItems.map((item, index) => (
+            <a
+              class:list={['site-header__link', index === 0 && 'site-header__link--active']}
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+        <a class="button button--primary button--small" href="#contact">Free Quote</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="site-header__mobile" id="mobile-navigation" data-menu-panel hidden>
+    <div class="site-header__mobile-inner container">
+      {
+        navItems.map((item) => (
+          <a class="site-header__mobile-link" href={item.href} data-menu-link>
+            {item.label}
+          </a>
+        ))
+      }
+      <a class="button button--primary" href="#contact" data-menu-link>Free Quote</a>
+    </div>
+  </div>
+</header>
+
+<script is:inline>
+  const menuToggle = document.querySelector('[data-menu-toggle]');
+  const menuPanel = document.querySelector('[data-menu-panel]');
+  const menuLinks = document.querySelectorAll('[data-menu-link]');
+
+  if (menuToggle instanceof HTMLButtonElement && menuPanel instanceof HTMLElement) {
+    const closeMenu = () => {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuPanel.hidden = true;
+      document.body.classList.remove('menu-open');
+    };
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      menuPanel.hidden = isOpen;
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 960) {
+        closeMenu();
+      }
+    });
+  }
+</script>

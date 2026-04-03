@@ -1,0 +1,26 @@
+---
+import { siteContent } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section section--muted" id="services">
+  <div class="container">
+    <SectionHeading
+      eyebrow={siteContent.services.eyebrow}
+      title={siteContent.services.title}
+      body={siteContent.services.body}
+      centered
+    />
+
+    <div class="services-grid">
+      {siteContent.services.cards.map((service) => (
+        <article class="service-card">
+          <span class="material-symbols-outlined service-card__icon" aria-hidden="true">
+            {service.icon}
+          </span>
+          <h3 class="service-card__title">{service.title}</h3>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

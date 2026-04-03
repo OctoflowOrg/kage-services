@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>KAGE Services</title>
+  <rect width="64" height="64" rx="12" fill="#286c00"/>
+  <path d="M16 14h10v36H16zM30 14h10v15l12-15h12L49 31l15 19H52L40 35v15H30z" fill="#ffffff"/>
+</svg>

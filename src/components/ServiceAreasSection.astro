@@ -1,0 +1,35 @@
+---
+import { siteContent } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section" id="service-areas">
+  <div class="container split-layout split-layout--map">
+    <div>
+      <SectionHeading
+        eyebrow={siteContent.serviceAreas.eyebrow}
+        title={siteContent.serviceAreas.title}
+        body={siteContent.serviceAreas.body}
+      />
+
+      <ul class="area-list" aria-label="Service areas">
+        {siteContent.serviceAreas.areas.map((area) => (
+          <li class="area-list__item">
+            <span class="area-list__dot" aria-hidden="true"></span>
+            <span>{area.name}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="map-card">
+      <img
+        src={siteContent.serviceAreas.image}
+        alt={siteContent.serviceAreas.alt}
+        class="map-card__image"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</section>

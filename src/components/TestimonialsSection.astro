@@ -1,0 +1,24 @@
+---
+import { siteContent } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section">
+  <div class="container">
+    <SectionHeading eyebrow={siteContent.testimonials.eyebrow} title={siteContent.testimonials.title} />
+
+    <div class="testimonial-grid">
+      {siteContent.testimonials.items.map((testimonial) => (
+        <article class="testimonial-card">
+          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
+            {Array.from({ length: 5 }).map(() => (
+              <span class="material-symbols-outlined" aria-hidden="true">star</span>
+            ))}
+          </div>
+          <blockquote class="testimonial-card__quote">"{testimonial.quote}"</blockquote>
+          <p class="testimonial-card__author">- {testimonial.author}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

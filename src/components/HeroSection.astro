@@ -1,0 +1,40 @@
+---
+import { siteContent } from '../data/site';
+---
+
+<section class="hero" id="home">
+  <div class="hero__media">
+    <img
+      src={siteContent.hero.image}
+      alt={siteContent.hero.alt}
+      class="hero__image"
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+    <div class="hero__overlay"></div>
+  </div>
+
+  <div class="hero__content">
+    <div class="hero__shell container">
+      <div class="hero__inner">
+        <div class="hero__copy">
+          <span class="hero__signature">{siteContent.company.tagline}</span>
+          <h1 class="hero__title">
+            Precision in Every <span>Surface.</span>
+          </h1>
+          <p class="hero__body">{siteContent.company.heroBody}</p>
+          <div class="hero__actions">
+            <a class="button button--primary" href={siteContent.hero.primaryCta.href}>
+              {siteContent.hero.primaryCta.label}
+              <span class="material-symbols-outlined button__icon" aria-hidden="true">arrow_forward</span>
+            </a>
+            <a class="button button--secondary" href={siteContent.hero.secondaryCta.href}>
+              {siteContent.hero.secondaryCta.label}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

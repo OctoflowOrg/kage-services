@@ -1,0 +1,48 @@
+---
+import { siteContent } from '../data/site';
+import ContactForm from './ContactForm.astro';
+---
+
+<section class="section section--muted" id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <aside class="contact-card__info">
+        <div>
+          <span class="section-heading__eyebrow">{siteContent.contact.eyebrow}</span>
+          <h2 class="contact-card__title">{siteContent.contact.title}</h2>
+          <p class="contact-card__body">{siteContent.contact.body}</p>
+
+          <div class="contact-details">
+            <div class="contact-details__item">
+              <span class="material-symbols-outlined" aria-hidden="true">call</span>
+              <div>
+                <p class="contact-details__label">Numbers</p>
+                {siteContent.contact.phoneNumbers.map((entry) => (
+                  <a class="contact-details__link" href={entry.href}>
+                    {entry.label}: {entry.value}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            <div class="contact-details__item">
+              <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+              <div>
+                <p class="contact-details__label">Email</p>
+                <a class="contact-details__link" href={`mailto:${siteContent.contact.email}`}>
+                  {siteContent.contact.email}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="contact-card__signature">{siteContent.company.name}</p>
+      </aside>
+
+      <div class="contact-card__form">
+        <ContactForm />
+      </div>
+    </div>
+  </div>
+</section>

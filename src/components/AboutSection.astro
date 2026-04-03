@@ -1,0 +1,38 @@
+---
+import { siteContent } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section" id="about">
+  <div class="container split-layout">
+    <div class="about-media">
+      <img
+        src={siteContent.about.image}
+        alt={siteContent.about.alt}
+        class="about-media__image"
+        loading="lazy"
+        decoding="async"
+      />
+      <div class="about-media__badge">
+        <strong>{siteContent.about.yearsExperience}</strong>
+        <span>Years Experience</span>
+      </div>
+    </div>
+
+    <div class="about-copy">
+      <SectionHeading eyebrow={siteContent.about.eyebrow} title={siteContent.about.title} />
+      <div class="prose-copy">
+        {siteContent.about.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+
+      <dl class="credential-list">
+        {siteContent.about.credentials.map((credential) => (
+          <div class="credential-list__item">
+            <dt>{credential.label}</dt>
+            <dd>{credential.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </div>
+</section>

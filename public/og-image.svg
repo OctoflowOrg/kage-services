@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">KAGE Services</title>
+  <desc id="desc">Masterful drywall and plastering for South East Queensland.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f9f9f9"/>
+      <stop offset="100%" stop-color="#e9f4e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="70" y="70" width="1060" height="490" rx="28" fill="#ffffff" stroke="#d9e8cf"/>
+  <text x="110" y="230" fill="#286c00" font-family="Manrope, Arial, sans-serif" font-size="46">KAGE Services</text>
+  <text x="110" y="330" fill="#1a1c1c" font-family="Manrope, Arial, sans-serif" font-size="88" font-weight="800">
+    Precision in Every Surface.
+  </text>
+  <text x="110" y="412" fill="#41493a" font-family="Inter, Arial, sans-serif" font-size="34">
+    Masterful drywall and plastering across South East Queensland.
+  </text>
+  <rect x="110" y="458" width="280" height="68" rx="12" fill="#286c00"/>
+  <text x="150" y="502" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">
+    Free Quote Available
+  </text>
+</svg>

@@ -1,0 +1,32 @@
+---
+import { siteContent } from '../data/site';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section class="section section--muted" id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <SectionHeading eyebrow={siteContent.gallery.eyebrow} title={siteContent.gallery.title} />
+      <a
+        class="social-pill"
+        href={siteContent.gallery.instagramUrl}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">photo_camera</span>
+        View Latest Work
+      </a>
+    </div>
+
+    <div class="gallery-scroll" aria-label="Project showcase">
+      {siteContent.gallery.items.map((item) => (
+        <article class="gallery-card">
+          <img src={item.image} alt={item.alt} class="gallery-card__image" loading="lazy" decoding="async" />
+          <div class="gallery-card__overlay">
+            <h3>{item.title}</h3>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
