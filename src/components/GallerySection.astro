@@ -18,15 +18,67 @@ import SectionHeading from './SectionHeading.astro';
       </a>
     </div>
 
-    <div class="gallery-scroll" aria-label="Project showcase">
-      {siteContent.gallery.items.map((item) => (
-        <article class="gallery-card">
-          <img src={item.image} alt={item.alt} class="gallery-card__image" loading="lazy" decoding="async" />
-          <div class="gallery-card__overlay">
-            <h3>{item.title}</h3>
-          </div>
-        </article>
-      ))}
+    <div class="carousel" aria-label="Project showcase">
+      <div class="carousel__track">
+        {siteContent.gallery.items.map((item, index) => (
+          <article class="carousel__slide" aria-hidden={index !== 0 ? 'true' : 'false'}>
+            <img src={item.image} alt={item.alt} class="carousel__image" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
+            <div class="gallery-card__overlay">
+              <h3>{item.title}</h3>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <button class="carousel__btn carousel__btn--prev" aria-label="Previous image">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <button class="carousel__btn carousel__btn--next" aria-label="Next image">
+        <span class="material-symbols-outlined">arrow_forward</span>
+      </button>
+
+      <div class="carousel__dots" aria-hidden="true">
+        {siteContent.gallery.items.map((_, index) => (
+          <button class={`carousel__dot${index === 0 ? ' carousel__dot--active' : ''}`} data-index={index} aria-label={`Go to slide ${index + 1}`}></button>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.querySelector('.carousel__track') as HTMLElement;
+  const slides = document.querySelectorAll('.carousel__slide') as NodeListOf<HTMLElement>;
+  const dots = document.querySelectorAll('.carousel__dot') as NodeListOf<HTMLElement>;
+  const prevBtn = document.querySelector('.carousel__btn--prev') as HTMLButtonElement;
+  const nextBtn = document.querySelector('.carousel__btn--next') as HTMLButtonElement;
+
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function goTo(index: number) {
+    slides[current].setAttribute('aria-hidden', 'true');
+    dots[current].classList.remove('carousel__dot--active');
+    current = (index + slides.length) % slides.length;
+    slides[current].setAttribute('aria-hidden', 'false');
+    dots[current].classList.add('carousel__dot--active');
+    track.style.transform = `translateX(-${current * 100}%)`;
+  }
+
+  function startTimer() {
+    timer = setInterval(() => goTo(current + 1), 4000);
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    startTimer();
+  }
+
+  prevBtn.addEventListener('click', () => { goTo(current - 1); resetTimer(); });
+  nextBtn.addEventListener('click', () => { goTo(current + 1); resetTimer(); });
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => { goTo(index); resetTimer(); });
+  });
+
+  startTimer();
+</script>
