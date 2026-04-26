@@ -3,7 +3,7 @@ import { siteContent } from '../data/site';
 import SectionHeading from './SectionHeading.astro';
 ---
 
-<section class="section" id="service-areas">
+<section class="section section--muted" id="service-areas">
   <div class="container split-layout split-layout--map">
     <div>
       <SectionHeading
@@ -13,10 +13,13 @@ import SectionHeading from './SectionHeading.astro';
       />
 
       <ul class="area-list" aria-label="Service areas">
-        {siteContent.serviceAreas.areas.map((area) => (
+        {siteContent.serviceAreas.areas.map((area, index) => (
           <li class="area-list__item">
             <span class="area-list__dot" aria-hidden="true"></span>
-            <span>{area.name}</span>
+            {index === siteContent.serviceAreas.areas.length - 1
+              ? <span>{area.name} <a class="area-list__link" href="#contact">Let's talk.</a></span>
+              : <span>{area.name}</span>
+            }
           </li>
         ))}
       </ul>

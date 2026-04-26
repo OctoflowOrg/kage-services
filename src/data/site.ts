@@ -41,7 +41,7 @@ export const siteContent = {
     footerSummary:
       'Masterful drywall and plastering for South East Queensland. Excellence in every layer.',
     logo: {
-      src: '/logo.png',
+      src: '/logo-wide.png',
       alt: 'KAGE Services logo',
     },
   },
@@ -68,9 +68,8 @@ export const siteContent = {
   about: {
     eyebrow: 'Our Heritage',
     title: 'Meticulous Craftsmanship Since Day One',
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuCW_H_IQAuL5cexAUCPLxQdqOkYfSxnCtquZrqi1MoNG1BzRstLUbsw94v_vmmfqF1_cDlAUxlpwRV4JZAHln_gUmXKqIG1P5ZKCortn6xU7hW7C1hNWpv4L13XVt-BcD97KL8Qxp2PmxSJOUTCbewOh3GYtNGDtIL0egBOg1aslqX9DMpdPZhjyJ7kG6L5z5ZmZQy3517OzQfsGwyTdK6TBZE9caCghkFIQJiUVVrcvGWuCa_olBktO2RvvKHhxT6RLGC9i_1YS4p_',
-    alt: 'Craftsmanship close up',
+    image: '/carousel%20images/IMG_3274.jpeg',
+    alt: 'KAGE Services residential craftsmanship',
     yearsExperience: '20+',
     body: [
       "With over 20 years of dedicated experience, KAGE Services has built a reputation for excellence that literally stands the test of time. We believe a wall is more than just a partition. It's the canvas of your home.",
@@ -115,8 +114,7 @@ export const siteContent = {
     title: 'Our Service Areas',
     body:
       'Masterful drywall services across South East Queensland. Our team is fully mobile and ready to assist in:',
-    image:
-      'https://lh3.googleusercontent.com/aida/ADBb0uhmvNiDNNSVtDS_5blT51ijB2ErVAD41cSI5utkn0QsYZMzSdw9ix9KsBwvomJFHwmJ_HY28B358pXGjj-nsgWVCQaXlcE0MGaFTpP10P9lVfVrzGzS_a_bfqXvUC77DnJNe6UTdkfcKrs69pTV4LAbqf_QUcR10G61iGUp5MLLCr09LPj705RLm9luQiXsuTbBXSZLpuO7PCfL6VYw8MHXEi4KihnzA60WvW0Lme7rCXagHdch2nqw7HuWFkhpmXoqfkzr5xmKyZ4',
+    image: '/kage_services_service_area_map.png',
     alt: 'Coverage map for South East Queensland service areas',
     areas: [
       { name: 'Brisbane' },
@@ -128,7 +126,8 @@ export const siteContent = {
       { name: 'Fraser Coast' },
       { name: 'Sunshine Coast' },
       { name: 'Gold Coast' },
-      { name: 'And Surrounds' },
+      { name: 'Bundaberg' },
+      { name: 'Outside these areas?' },
     ] satisfies Area[],
   },
   gallery: {
