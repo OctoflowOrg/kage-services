@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kageservices.com.au/sitemap.xml
