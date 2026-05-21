@@ -13,7 +13,6 @@ export type Area = {
 };
 
 export type GalleryItem = {
-  title: string;
   image: string;
   alt: string;
 };
@@ -35,9 +34,6 @@ export const siteContent = {
     name: 'KAGE Services',
     legalName: 'KAGE Services Pty Ltd.',
     tagline: 'Masterful Finishes',
-    heroHeadline: 'Precision in Every Surface.',
-    heroBody:
-      'We pride ourselves on delivering high-quality work, clear communication, friendly service, and expert guidance.',
     footerSummary:
       'Masterful drywall and plastering for South East Queensland. Excellence in every layer.',
     logo: {
@@ -53,23 +49,14 @@ export const siteContent = {
     { href: '#gallery', label: 'Gallery' },
   ] satisfies NavItem[],
   hero: {
-    image:
-      'https://lh3.googleusercontent.com/aida-public/AB6AXuDgL68WgmZiz-qNrv19YHOEbSEFy46au0cPV2lWBTvko0tWOfW1uxKd8fh8P8ZiN_Vli9iVAK1LKAzyaBkd80CS-KVAiyeNnSYh9Zy-Ix-OBclM73boz4yh_KM7XbwzVH6ey2zQY7UFkWotXsNIf0eOARQqKqucX1sDwa_kM-NbEpbBochjXHdlNKAooO8bfzcFfwYpwB9pMSJbGdxKKyBBS94vJdmEydk2WsrzIQ-6oGcg63ARlJxWGp8qZPq5e27wrE-IcGBgy7GE',
-    alt: 'Clean drywall finish',
-    primaryCta: {
-      href: '#contact',
-      label: 'Request A Free Quote',
-    },
-    secondaryCta: {
-      href: '#services',
-      label: 'Our Services',
-    },
+    image: '/uniform-pics/IMG_4536.jpeg',
+    alt: 'Geoff and Kylie of KAGE Services in front of the company van',
   },
   about: {
     eyebrow: 'Our Heritage',
     title: 'Meticulous Craftsmanship Since Day One',
-    image: '/carousel%20images/IMG_3274.jpeg',
-    alt: 'KAGE Services residential craftsmanship',
+    image: '/uniform-pics/IMG_4516.jpeg',
+    alt: 'Geoff and Kylie, the team behind KAGE Services',
     yearsExperience: '20+',
     body: [
       "With over 20 years of dedicated experience, KAGE Services has built a reputation for excellence that literally stands the test of time. We believe a wall is more than just a partition. It's the canvas of your home.",
@@ -133,73 +120,59 @@ export const siteContent = {
   gallery: {
     eyebrow: 'Our Work',
     title: 'Project Showcase',
-    instagramUrl: 'https://www.instagram.com/kage_services/',
-    instagramHandle: '@kage_services',
+    instagramUrl: 'https://www.instagram.com/kageservices/',
     items: [
       {
-        title: 'Detailed Interior Finish',
         image: '/carousel%20images/IMG_3017.jpeg',
-        alt: 'KAGE Services detailed interior finish',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Precision Ceiling Work',
         image: '/carousel%20images/IMG_3100.jpeg',
-        alt: 'KAGE Services precision ceiling work',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Custom Wall Installation',
         image: '/carousel%20images/IMG_3260.jpeg',
-        alt: 'KAGE Services custom wall installation',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Residential Craftsmanship',
         image: '/carousel%20images/IMG_3274.jpeg',
-        alt: 'KAGE Services residential craftsmanship',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Signature Ceiling Lines',
         image: '/carousel%20images/IMG_3307.jpeg',
-        alt: 'KAGE Services signature ceiling lines',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Smooth Surface Detailing',
         image: '/carousel%20images/IMG_3655.jpeg',
-        alt: 'KAGE Services smooth surface detailing',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Clean Modern Interior',
         image: '/carousel%20images/IMG_3657.jpeg',
-        alt: 'KAGE Services clean modern interior finish',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Feature Wall Finish',
         image: '/carousel%20images/IMG_3661.jpeg',
-        alt: 'KAGE Services feature wall finish',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Project Delivery',
         image: '/carousel%20images/IMG_3730.jpeg',
-        alt: 'KAGE Services completed project detail',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Refined Repair Work',
         image: '/carousel%20images/IMG_3941.jpeg',
-        alt: 'KAGE Services refined repair work',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Commercial Interior Detail',
         image: '/carousel%20images/IMG_3950.jpeg',
-        alt: 'KAGE Services commercial interior detail',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Crisp Finishing Work',
         image: '/carousel%20images/IMG_4063.jpeg',
-        alt: 'KAGE Services crisp finishing work',
+        alt: 'KAGE Services project photo',
       },
       {
-        title: 'Completed Interior Build',
         image: '/carousel%20images/IMG_4235.jpeg',
-        alt: 'KAGE Services completed interior build',
+        alt: 'KAGE Services project photo',
       },
     ] satisfies GalleryItem[],
   },
@@ -247,7 +220,7 @@ export const siteContent = {
     qbcc: '15570544',
   },
   socials: {
-    facebook: 'https://www.facebook.com/kageservices',
-    instagram: 'https://www.instagram.com/kage_services/',
+    facebook: 'https://www.facebook.com/people/Kage-Services',
+    instagram: 'https://www.instagram.com/kageservices/',
   },
 } as const;
