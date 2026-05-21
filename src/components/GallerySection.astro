@@ -23,9 +23,6 @@ import SectionHeading from './SectionHeading.astro';
         {siteContent.gallery.items.map((item, index) => (
           <article class="carousel__slide" aria-hidden={index !== 0 ? 'true' : 'false'}>
             <img src={item.image} alt={item.alt} class="carousel__image" loading={index === 0 ? 'eager' : 'lazy'} decoding="async" />
-            <div class="gallery-card__overlay">
-              <h3>{item.title}</h3>
-            </div>
           </article>
         ))}
       </div>
