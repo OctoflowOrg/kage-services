@@ -59,8 +59,10 @@ export const siteContent = {
     alt: 'Geoff and Kylie, the team behind KAGE Services',
     yearsExperience: '20+',
     body: [
-      "With over 20 years of dedicated experience, KAGE Services has built a reputation for excellence that literally stands the test of time. We believe a wall is more than just a partition. It's the canvas of your home.",
-      'Our meticulous approach ensures every joint is seamless, every corner is crisp, and every finish is smooth as glass.',
+      'With more than two decades of experience, KAGE Services delivers exceptional plastering solutions for residential, commercial, and insurance projects.',
+      'Specialising in all facets of the trade, our team of skilled plasterers handles every job with precision, from standard repairs to intricate ornamental cornice work.',
+      'We pride ourselves on meticulous craftsmanship and a professional approach, ensuring every finish is seamless and stunning.',
+      'KAGE Services is dedicated to providing high-quality, reliable plastering tailored to meet the unique needs of every client.',
     ],
     credentials: [
       { label: 'QBCC', value: '15570544' },
@@ -182,18 +184,33 @@ export const siteContent = {
     items: [
       {
         quote:
-          'Exceptional attention to detail. The finish on our new home is absolutely flawless. Highly recommend KAGE for any high-end project.',
-        author: 'Predrag',
+          "Geoff arrived 10 minutes early and sat politely in his vehicle till 7am, should of come in for a coffee! My insurer recommended KAGE for our ceiling repair. They arrived when they said they would arrive and completed the work quickly and effectively. Geoff is a lovely guy, easy to talk to and is more than happy to explain the work being carried out. Will be recommending KAGE Services in the future.",
+        author: 'Andrew',
       },
       {
         quote:
-          'Professional and clean. They worked around our renovation schedule and left the place spotless every day.',
-        author: 'Maureen',
+          "We recently had Geoff from KAGE Services complete plastering work at our property in Burpengary, and we honestly couldn't be happier with the result. From start to finish, Geoff was an absolute pleasure to deal with — friendly, professional, and genuinely cares about the quality of his work. His plastering was flawless, and the attention to detail really shows in the finished product. It's not easy to find trades who take that level of pride in what they do. On top of that, his pricing was very fair, and everything was completed promptly without cutting any corners. The whole process was smooth and stress-free, which is exactly what you want when doing renovations. We'll definitely be using Geoff again in the future and wouldn't hesitate to recommend him to anyone looking for a reliable, high-quality plasterer. Thanks again Geoff — fantastic job!",
+        author: 'Kate',
       },
       {
         quote:
-          'The communication was wonderful, they were efficient and the final product was perfect.',
-        author: 'Kate & Vanessa',
+          'Repairs to bathroom after Alfred. Good job. Recommend KAGE in Brisbane.',
+        author: 'Cica',
+      },
+      {
+        quote:
+          'KAGE recently completed repairs to our kitchen ceiling caused by a faulty air-conditioning unit. Geoff completed the job in two days which required cutting out and replacing the affected area. I was amazed at the quality of the work done and it is impossible to see where the repair was done. Highly recommend KAGE.',
+        author: 'Ken',
+      },
+      {
+        quote:
+          'Wonderful communication and coordination to have our plastering works completed. Was quick to have the works completed and executed well.',
+        author: 'Vanessa',
+      },
+      {
+        quote:
+          'The communication from the team through our recent renovations was wonderful, they were efficient and the final product was perfect. Thank you again.',
+        author: 'Kate',
       },
     ] satisfies Testimonial[],
   },
