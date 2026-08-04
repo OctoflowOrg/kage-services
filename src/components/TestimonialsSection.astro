@@ -7,18 +7,178 @@ import SectionHeading from './SectionHeading.astro';
   <div class="container">
     <SectionHeading eyebrow={siteContent.testimonials.eyebrow} title={siteContent.testimonials.title} />
 
-    <div class="testimonial-grid">
-      {siteContent.testimonials.items.map((testimonial) => (
-        <article class="testimonial-card">
-          <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
-            {Array.from({ length: 5 }).map(() => (
-              <span class="material-symbols-outlined" aria-hidden="true">star</span>
-            ))}
-          </div>
-          <blockquote class="testimonial-card__quote">"{testimonial.quote}"</blockquote>
-          <p class="testimonial-card__author">- {testimonial.author}</p>
-        </article>
-      ))}
+    <div class="testimonial-carousel" data-testimonial-carousel>
+      <button
+        type="button"
+        class="testimonial-carousel__nav testimonial-carousel__nav--prev"
+        data-carousel-prev
+        aria-label="Previous testimonials"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
+      </button>
+
+      <div class="testimonial-carousel__viewport" data-carousel-viewport>
+        <div class="testimonial-track" data-carousel-track>
+          {siteContent.testimonials.items.map((testimonial) => (
+            <article class="testimonial-card" data-testimonial-card>
+              <div class="testimonial-card__body" data-testimonial-body>
+                <div class="testimonial-card__stars" aria-label="5 out of 5 stars">
+                  {Array.from({ length: 5 }).map(() => (
+                    <span class="material-symbols-outlined" aria-hidden="true">star</span>
+                  ))}
+                </div>
+                <blockquote class="testimonial-card__quote">"{testimonial.quote}"</blockquote>
+                <p class="testimonial-card__author">- {testimonial.author}</p>
+              </div>
+              <button type="button" class="testimonial-card__toggle" data-testimonial-toggle hidden>
+                <span data-toggle-label>Read more</span>
+                <span class="material-symbols-outlined" aria-hidden="true">expand_more</span>
+              </button>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="testimonial-carousel__nav testimonial-carousel__nav--next"
+        data-carousel-next
+        aria-label="Next testimonials"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
+      </button>
+
+      <div class="testimonial-carousel__dots" data-carousel-dots aria-label="Testimonial pages"></div>
     </div>
   </div>
 </section>
+
+<script>
+  const ROTATE_INTERVAL = 6000;
+
+  function initCarousel(root: HTMLElement) {
+    const track = root.querySelector<HTMLElement>('[data-carousel-track]');
+    const viewport = root.querySelector<HTMLElement>('[data-carousel-viewport]');
+    const dotsWrap = root.querySelector<HTMLElement>('[data-carousel-dots]');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const cards = Array.from(root.querySelectorAll<HTMLElement>('[data-testimonial-card]'));
+    if (!track || !viewport || !dotsWrap || cards.length === 0) return;
+
+    const cardsPerView = () => {
+      const w = window.innerWidth;
+      if (w >= 960) return 3;
+      if (w >= 720) return 2;
+      return 1;
+    };
+
+    let page = 0;
+    let pageCount = 1;
+    let timer: number | undefined;
+
+    const buildDots = () => {
+      dotsWrap.innerHTML = '';
+      for (let i = 0; i < pageCount; i += 1) {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'testimonial-carousel__dot';
+        dot.setAttribute('aria-label', `Go to testimonial page ${i + 1}`);
+        dot.addEventListener('click', () => {
+          goTo(i);
+          restart();
+        });
+        dotsWrap.appendChild(dot);
+      }
+    };
+
+    const gapPx = () => parseFloat(getComputedStyle(track).columnGap) || 0;
+
+    const update = () => {
+      const perView = cardsPerView();
+      const nextPageCount = Math.max(1, Math.ceil(cards.length / perView));
+      if (nextPageCount !== pageCount) {
+        pageCount = nextPageCount;
+        buildDots();
+      }
+      if (page > pageCount - 1) page = pageCount - 1;
+      const offset = page * (viewport.clientWidth + gapPx());
+      track.style.transform = `translateX(-${offset}px)`;
+      Array.from(dotsWrap.children).forEach((dot, i) => {
+        dot.classList.toggle('is-active', i === page);
+      });
+    };
+
+    const goTo = (next: number) => {
+      page = (next + pageCount) % pageCount;
+      update();
+    };
+
+    const stop = () => {
+      if (timer) window.clearInterval(timer);
+      timer = undefined;
+    };
+
+    const start = () => {
+      stop();
+      if (pageCount <= 1) return;
+      timer = window.setInterval(() => goTo(page + 1), ROTATE_INTERVAL);
+    };
+
+    const restart = () => {
+      start();
+    };
+
+    prevBtn?.addEventListener('click', () => {
+      goTo(page - 1);
+      restart();
+    });
+    nextBtn?.addEventListener('click', () => {
+      goTo(page + 1);
+      restart();
+    });
+
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+    root.addEventListener('focusin', stop);
+    root.addEventListener('focusout', start);
+
+    let resizeRaf = 0;
+    window.addEventListener('resize', () => {
+      window.cancelAnimationFrame(resizeRaf);
+      resizeRaf = window.requestAnimationFrame(() => {
+        update();
+        start();
+      });
+    });
+
+    // Expand / collapse per card when the content overflows the collapsed height.
+    cards.forEach((card) => {
+      const body = card.querySelector<HTMLElement>('[data-testimonial-body]');
+      const toggle = card.querySelector<HTMLButtonElement>('[data-testimonial-toggle]');
+      const label = card.querySelector<HTMLElement>('[data-toggle-label]');
+      if (!body || !toggle || !label) return;
+
+      const checkOverflow = () => {
+        if (card.classList.contains('is-expanded')) return;
+        const overflowing = body.scrollHeight > body.clientHeight + 1;
+        toggle.hidden = !overflowing;
+      };
+
+      toggle.addEventListener('click', () => {
+        const expanded = card.classList.toggle('is-expanded');
+        label.textContent = expanded ? 'Show less' : 'Read more';
+        toggle.classList.toggle('is-expanded', expanded);
+      });
+
+      window.addEventListener('resize', checkOverflow);
+      requestAnimationFrame(checkOverflow);
+    });
+
+    update();
+    start();
+  }
+
+  document
+    .querySelectorAll<HTMLElement>('[data-testimonial-carousel]')
+    .forEach((el) => initCarousel(el));
+</script>
