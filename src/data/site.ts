@@ -237,7 +237,7 @@ export const siteContent = {
     qbcc: '15570544',
   },
   socials: {
-    facebook: 'https://www.facebook.com/people/Kage-Services',
+    facebook: 'https://www.facebook.com/people/Kage-Serviceshttps://www.facebook.com/profile.php?id=61576459496979',
     instagram: 'https://www.instagram.com/kageservices/',
   },
 } as const;
